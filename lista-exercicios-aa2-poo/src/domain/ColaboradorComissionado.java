@@ -1,6 +1,8 @@
 package domain;
 
-public class ColaboradorComissionado extends Colaborador{
+import java.math.BigDecimal;
+
+public class ColaboradorComissionado extends Colaborador implements Tributavel{
 
     private double percentualComissao;
 
@@ -26,7 +28,11 @@ public class ColaboradorComissionado extends Colaborador{
 
     @Override
     public double calcularRemuneracao() {
-        return this.getSalarioBase() + this.getSalarioBase()*percentualComissao/100;
+        return (this.getSalarioBase() + this.getSalarioBase()*percentualComissao/100) - calcularImposto();
     }
 
+    @Override
+    public double calcularImposto() {
+        return this.getSalarioBase() * 0.1;
+    }
 }

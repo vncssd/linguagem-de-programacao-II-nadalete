@@ -1,6 +1,6 @@
 package domain;
 
-public class ColaboradorMensalista extends Colaborador{
+public class ColaboradorMensalista extends Colaborador implements Tributavel{
 
     public ColaboradorMensalista() {
     }
@@ -11,6 +11,13 @@ public class ColaboradorMensalista extends Colaborador{
 
     @Override
     public double calcularRemuneracao() {
-        return this.getSalarioBase();
+        return this.getSalarioBase() - calcularImposto();
     }
+
+    @Override
+    public double calcularImposto() {
+        return this.getSalarioBase() * 0.08;
+    }
+
+
 }
